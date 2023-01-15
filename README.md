@@ -105,7 +105,7 @@ Open the setup document in this path
 $Multi-tier-Web-Application-Stack/vagrant/Manual_provisioning/VprofileProjectSetup.pdf
 
 
-**Setup sql service**
+# Setup sql service
 
 $sudo -i && yum update -y
 
@@ -613,7 +613,9 @@ passsword: admin_vp
 You also validate other backend services
 
 
-**CONGRATULATIONS!**🥳🥳
+**CONGRATULATIONS!**
+
+🥳🥳🥳
 
 
 
