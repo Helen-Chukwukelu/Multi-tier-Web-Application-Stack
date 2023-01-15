@@ -70,20 +70,23 @@ $choco install sublimetext3.app
 - Note: You must not use chocolatey, you can install them directyl from browser.
 
 
-#Next STEP
+# Next STEP
 
 From gitbash run
 
 $git clone https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
 
+
 $cd Multi-tier-Web-Application-Stack/
 
+
 - switch to local setup branch if that is not your current branch
+
 
 $git checkout local-setup
 
 - Install vagrant host manager
-- 
+ 
 $vagrant plugin install vagrant hostmanager
 
 $vagrant up
@@ -107,7 +110,7 @@ ping mc01
 this is to ping back end services that the app will try to connect to
 
 
-- Next step
+# Next step
 
 Open the setup document in this path
 
@@ -141,15 +144,17 @@ save and exit
 
 - Install and setup a repository which is epel-release
 
+
 $yum install epel-release -y
 
 this will set the repo access and then run
+
 
 # Install Maria DB Package
 
 $yum install git mariadb-server -y
 
-# Starting & enabling mariadb-server
+- Starting & enabling mariadb-server
 
 $systemctl start mariadb
 
@@ -162,9 +167,11 @@ $systemctl status mariadb
 $mysql_secure_installation
 
 press enter
+
 until it ask to enter new password, use admin 123
 
 - The below is to help you with the responses 
+
 
 
 **Remove anonymous users? [Y/n] Y
@@ -176,10 +183,11 @@ until it ask to enter new password, use admin 123
 **Reload privilege tables now? [Y/n] y
 
 
+
 - NOTE: Set db root password, I will be using admin123 as pasPsword
 
 
-IT IS SETUP!
+# IT IS SETUP!
 
 
 Now test password and see if you can login
@@ -191,12 +199,12 @@ $exit
 - Now clone the source code
 
 
-- Download Source code & Initialize Database.
+Download Source code & Initialize Database.
 
 
  $git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git](https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
 
-reason of cloning is because our database file is there
+**reason of cloning is because our database file is there
 
 $cd Multi-tier-Web-Application-Stack.git
 
@@ -251,6 +259,7 @@ $logout
 
 If you want to setup firewall, use the below
 
+
 - Restart mariadb-server
 
 $systemctl restart mariadb
@@ -296,7 +305,8 @@ $memcached -p 11211 -U 11111 -u memcached -d
 
 $sudo netstat -nap | grep memcached
 
-GOOD!
+
+**GOOD!
 
 $exit
 
@@ -304,6 +314,7 @@ $exit
 # LETS SETUP RABBIT MQ
 
 $vagrant ssh rmq01
+
 
 - Login to the RabbitMQ vm
 
@@ -313,10 +324,11 @@ $sudo -i
 
 $yum update -y
 
+
 - Verify Hosts entry, if entries missing update the it with IP and hostnames
 $cat /etc/hosts
 
-Install Dependencies
+- Install Dependencies
 
 $sudo yum install wget -y
 
@@ -330,6 +342,7 @@ $sudo yum -y install erlang socat
 
 
 # Install Rabbitmq Server
+
 
 $curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
 
@@ -367,7 +380,8 @@ $systemctl restart rabbitmq-server
 $systemctl status rabbitmq-server
 
 
--**RUNNING! AND BACKEND IS SETUP!**
+
+'**RUNNING! AND BACKEND IS SETUP!**'
 
 
 Dababase, Memcatch and rabbitmq will now login to the main app01 where we will setup our tomcat service
@@ -377,6 +391,7 @@ run $exit and $exit again
 
 
 # TOMCAT SETUP
+
 
 - Login to the tomcat vm
 
@@ -388,6 +403,7 @@ $cat /etc/hosts
 
 
 - Update OS with latest patches
+
 
 $yum update -y
 
@@ -405,7 +421,7 @@ $yum install java-1.8.0-openjdk -y
 $yum install git maven wget -y
 
 
-Change dir to /tmp
+- Change dir to /tmp
 
 $cd /tmp/
 
@@ -440,7 +456,7 @@ vi /etc/systemd/system/tomcat.service
 
 Update file with following content.
 
-'''
+"'''"
 [Unit
 Description=Tomcat
 After=network.target
@@ -457,7 +473,7 @@ SyslogIdentifier=tomcat-%i
 [Install]
 WantedBy=multi-user.target
 
-'''
+"'''"
 
 
 Save it and run the commands
@@ -558,7 +574,7 @@ $vi /etc/nginx/sites-available/vproapp
 
 Then update with this below
 
-'''
+"'''"
 upstream vproapp {
 server app01:8080;
 }
@@ -568,7 +584,7 @@ location / {
 proxy_pass http://vproapp;
 }
 }
-'''
+"'''"
 
 save!
 
