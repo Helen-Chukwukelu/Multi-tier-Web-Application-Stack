@@ -456,7 +456,7 @@ vi /etc/systemd/system/tomcat.service
 
 Update file with following content.
 
-"'''"
+```
 [Unit
 Description=Tomcat
 After=network.target
@@ -473,7 +473,7 @@ SyslogIdentifier=tomcat-%i
 [Install]
 WantedBy=multi-user.target
 
-"'''"
+```
 
 
 Save it and run the commands
