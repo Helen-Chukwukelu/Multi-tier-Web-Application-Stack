@@ -4,16 +4,17 @@
 - Maven 3 or later
 - MySQL 5.6 or later
 - Vagrant
+- Oracle Virtualbox
 
 
 # PROJECT 1
 
-- WE WILL SETUP WEB APPLICATION STACK.
+- WE WILL SETUP WEB APPLICATION STACK - Multi-tier
 
 # Project explaination
 
 
-**We will setup a website/web app which is a social networking site written in Java. Stack is collection of services or technology to create an experience. We will use Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service. RabbitMQ is dummy in this project, not functional. it is a message broker or queueing agent.So when users try to login to access our application which in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in infomation before and it cached there.**
+**We will setup a web application which is a social networking site written in Java. Stack is collection of services or technology to create an experience. We will use Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service. RabbitMQ is dummy in this project, not functional. It is a message broker or queueing agent.So when users try to login to access our application which is in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in infomation before and it cached there.**
 
 - So We will setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
 
