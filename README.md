@@ -8,9 +8,14 @@
 
 # PROJECT 1
 
-# WE WILL SETUP WEB APPLICATION STACK.
+- WE WILL SETUP WEB APPLICATION STACK.
 
-We will setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
+# Project explaination
+
+
+**We will setup a website/web app which is a social networking site written in Java. Stack is collection of services or technology to create an experience. We will use Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service. RabbitMQ is dummy in this project, not functional. it is a message broker or queueing agent.So when users try to login to access our application which in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in infomation before and it cached there.**
+
+- So We will setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
 
 # ARCHITECTURE
 
@@ -22,25 +27,7 @@ We will setup multi-tier web application stack on our local machine. This will h
 
 There is manual and automanual setup
 
-**Let's do manual first
-
-
-* We will setup a website/web app which is a social networking site written in Java.
-
-
-* Stack is collection of services or technology to create an experience
-
-
-* We will use Nginx as a web server and as a load balancer
-
-
-*Apache Tomcat is a java web application service
-
-
-* RabbitMQ is dummy in this project, not functional. it is a message broker or queueing agent
-
-
-**So when users try to login to access our application which in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in before and it cached there.
+**Let's do manual first**
 
 
 # TOOLS TO INSTALL
@@ -71,7 +58,7 @@ $choco install sublimetext3.app
 - Note: You must not use chocolatey, you can install them directyl from browser.
 
 
-# Next STEP
+**Next STEP**
 
 From gitbash run
 
@@ -111,14 +98,14 @@ ping mc01
 this is to ping back end services that the app will try to connect to
 
 
-# Next step
+**Next step**
 
 Open the setup document in this path
 
 $Multi-tier-Web-Application-Stack/vagrant/Manual_provisioning/VprofileProjectSetup.pdf
 
 
-**Setup sql service
+**Setup sql service**
 
 $sudo -i && yum update -y
 
@@ -175,20 +162,20 @@ until it ask to enter new password, use admin 123
 
 
 
-**Remove anonymous users? [Y/n] Y
+**Remove anonymous users? [Y/n] Y**
 
-**Disallow root login remotely? [Y/n] n
+**Disallow root login remotely? [Y/n] n**
 
-**Remove test database and access to it? [Y/n] y
+**Remove test database and access to it? [Y/n] y**
 
-**Reload privilege tables now? [Y/n] y
+**Reload privilege tables now? [Y/n] y**
 
 
 
 - NOTE: Set db root password, I will be using admin123 as pasPsword
 
 
-**IT IS SETUP!
+**IT IS SETUP!**
 
 
 Now test password and see if you can login
@@ -205,7 +192,7 @@ Download Source code & Initialize Database.
 
  $git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git](https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
 
-**reason of cloning is because our database file is there
+**reason of cloning is because our database file is there**
 
 $cd Multi-tier-Web-Application-Stack.git
 
@@ -307,7 +294,7 @@ $memcached -p 11211 -U 11111 -u memcached -d
 $sudo netstat -nap | grep memcached
 
 
-**GOOD!
+**GOOD!**
 
 $exit
 
@@ -382,7 +369,7 @@ $systemctl status rabbitmq-server
 
 
 
-'**RUNNING! AND BACKEND IS SETUP!**'
+**RUNNING! AND BACKEND IS SETUP!**
 
 
 Dababase, Memcatch and rabbitmq will now login to the main app01 where we will setup our tomcat service
@@ -488,7 +475,7 @@ $systemctl enable tomcat
 $systemctl status tomcat
 
 
-**RUNNING!
+**RUNNING!**
 
 
 # NOW lets build artifact from our source code and deploy to tomcat server
@@ -626,7 +613,7 @@ passsword: admin_vp
 You also validate other backend services
 
 
-**CONGRATULATIONS!
+**CONGRATULATIONS!**🥳🥳
 
 
 
