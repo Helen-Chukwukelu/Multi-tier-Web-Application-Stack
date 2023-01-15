@@ -22,17 +22,17 @@ We will setup multi-tier web application stack on our local machine. This will h
 
 There is manual and automanual setup
 
-# Let's do manual first
+**Let's do manual first
 
 
 * We will setup a website/web app which is a social networking site written in Java.
-* 
 
-*Stack is collection of services or technology to create an experience
+
+* Stack is collection of services or technology to create an experience
 
 
 * We will use Nginx as a web server and as a load balancer
-* 
+
 
 *Apache Tomcat is a java web application service
 
@@ -40,10 +40,11 @@ There is manual and automanual setup
 * RabbitMQ is dummy in this project, not functional. it is a message broker or queueing agent
 
 
-* So when users try to login to access our application which in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in before and it cached there.
+**So when users try to login to access our application which in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in before and it cached there.
 
 
-- TOOLS TO INSTALL
+# TOOLS TO INSTALL
+
 
 Install chocolatey in your local machine 
 
@@ -187,7 +188,7 @@ until it ask to enter new password, use admin 123
 - NOTE: Set db root password, I will be using admin123 as pasPsword
 
 
-# IT IS SETUP!
+**IT IS SETUP!
 
 
 Now test password and see if you can login
@@ -280,7 +281,7 @@ $systemctl restart mariadb
 
 
 
-# MEMCATCH SETUP
+# MEMCACHED SETUP
 
 $vagrant ssh mc01
 
