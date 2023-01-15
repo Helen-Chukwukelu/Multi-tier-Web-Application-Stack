@@ -574,7 +574,7 @@ $vi /etc/nginx/sites-available/vproapp
 
 Then update with this below
 
-"'''"
+```
 upstream vproapp {
 server app01:8080;
 }
@@ -584,7 +584,7 @@ location / {
 proxy_pass http://vproapp;
 }
 }
-"'''"
+```
 
 save!
 
@@ -609,6 +609,7 @@ Run the command
 $ifconfig
 
 - Copy the inet addr which is ip address and access it from browser
+
 
 It wil show a login page
 
