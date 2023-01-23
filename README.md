@@ -1,5 +1,8 @@
-# Prerequisites
-#
+# Setup a Multi-tier Web Application Stack
+
+
+## Prerequisites
+
 - JDK 1.8 or later
 - Maven 3 or later
 - MySQL 5.6 or later
@@ -7,18 +10,14 @@
 - Oracle Virtualbox
 
 
-# PROJECT 1
-
-- WE WILL SETUP WEB APPLICATION STACK - Multi-tier
-
-# Project explaination
+### Project Explaination
 
 
-**We will setup a web application which is a social networking site written in Java. Stack is collection of services or technology to create an experience. We will use Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service. RabbitMQ is dummy in this project, not functional. It is a message broker or queueing agent.So when users try to login to access our application which is in apache tomcat, our app will run sql query to access user info stored in mysql server. But it will first go to memcached service if the user has login in infomation before and it cached there.**
+**In this project I setup a web application which is a social networking site written in Java. Stack is collection of services or technology to create an experience. I used Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service used. RabbitMQ is dummy in this project, not functional. It is a message broker or queueing agent.So when users try to login to access our application which is in apache tomcat, the application will run SQL query to access user information stored in Mysql server. But it will first go to Memcached service if the user has login in infomation before and it cached there.**
 
-- So We will setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
+- So i will guide you on how to setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
 
-# ARCHITECTURE
+### ARCHITECTURE
 
 - NGINX
 - TOMCAT
@@ -26,141 +25,145 @@
 - MEMCACHED
 - MYSQL server
 
-There is manual and automanual setup
+There is manual and automatic setup
 
-**Let's do manual first**
-
-
-# TOOLS TO INSTALL
+**Let's do manual first** This will actually help you learn how everything is being put together.
 
 
-Install chocolatey in your local machine 
-
-Then Install all these via chocolatey
+### TOOLS TO INSTALL
 
 
-$choco install virtualbox --version=6.1.40
+- Install chocolatey in your local machine 
 
-$choco install vagrant
-
-$choco install git
-
-$choco install jdk8
-
-$choco install maven
-
-$choco install awscli
-
-$choco install intellijidea-community
-
-$choco install sublimetext3.app
+- Then Install all these via chocolatey
 
 
-- Note: You must not use chocolatey, you can install them directyl from browser.
+$ choco install virtualbox --version=6.1.40
+
+$ choco install vagrant
+
+$ choco install git
+
+$ choco install jdk8
+
+$ choco install maven
+
+$ choco install awscli
+
+$ choco install intellijidea-community
+
+$ choco install sublimetext3.app
 
 
-**Next STEP**
+**Note: You must not use chocolatey, you can install them directyl from browser.**
 
-From gitbash run
+..........................................................................................
+#### Next STEP
 
-$git clone https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
+Open your Gitbash treminal and run below commands
+
+$ git clone https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
 
 
-$cd Multi-tier-Web-Application-Stack/
+$ cd Multi-tier-Web-Application-Stack/
 
 
 - switch to local setup branch if that is not your current branch
 
 
-$git checkout local-setup
+$ git checkout local-setup
 
 - Install vagrant host manager
  
-$vagrant plugin install vagrant hostmanager
+$ vagrant plugin install vagrant hostmanager
 
-$vagrant up
+$ vagrant up
 
 **Open your virtualbox, if all are successfully set up and running. go back to terminal and run
 
-$vagrant ssh web01
+$ vagrant ssh web01
 
-$cat /etc/hosts
-
-ping app01
-
-logout and try to ssh into app01
-
-$vagrant ssh app01
-
-$cat /etc/hosts
-
-ping mc01
-
-this is to ping back end services that the app will try to connect to
+$ cat /etc/hosts
+ 
+$ ping app01
 
 
+- logout and try to ssh into app01
+
+$ vagrant ssh app01
+
+$ cat /etc/hosts
+
+$ ping mc01
+
+
+This is to ping back end services that the app will try to connect to
+
+.........................................................................................
 **Next step**
 
 Open the setup document in this path
 
-$Multi-tier-Web-Application-Stack/vagrant/Manual_provisioning/VprofileProjectSetup.pdf
+$ Multi-tier-Web-Application-Stack/vagrant/Manual_provisioning/VprofileProjectSetup.pdf
 
 
 # Setup sql service
 
-$sudo -i && yum update -y
+$ sudo -i && yum update -y
 
 
 - Now setup a variable for database
 
-$DATABASE_PASS='admin123'
+$ DATABASE_PASS='admin123'
 
-$echo $DATABASE_PASS
+$ echo $DATABASE_PASS
 
-Note this is temporary, you can mke it permanent
+Note this is temporary, you can make it permanent
 
-RUN
-$vi /etc/profile
+Run 
 
-and then add the file just beneath the last code/line 
+$ vi /etc/profile
+
+- and then add the file just beneath the last code/line 
 
 
 DATABASE_PASS='admin123' 
 
 
-save and exit
+- save and exit
 
 
-- Install and setup a repository which is epel-release
+#### Install and setup a repository which is epel-release
 
 
-$yum install epel-release -y
+$ yum install epel-release -y
 
 this will set the repo access and then run
 
 
-# Install Maria DB Package
+#### Install Maria DB Package
 
-$yum install git mariadb-server -y
+$ yum install git mariadb-server -y
 
 - Starting & enabling mariadb-server
 
-$systemctl start mariadb
+$ systemctl start mariadb
 
-$systemctl enable mariadb
+$ systemctl enable mariadb
 
-$systemctl status mariadb
+$ systemctl status mariadb
 
-# RUN mysql secure installation script.
 
-$mysql_secure_installation
+#### RUN mysql secure installation script.
 
-press enter
+$ mysql_secure_installation
+
+ Press enter
 
 until it ask to enter new password, use admin 123
 
-- The below is to help you with the responses 
 
+##### The below is to help you with the responses 
 
 
 **Remove anonymous users? [Y/n] Y**
@@ -173,7 +176,7 @@ until it ask to enter new password, use admin 123
 
 
 
-- NOTE: Set db root password, I will be using admin123 as pasPsword
+- NOTE: Set DB root password, I will be using admin123 as password
 
 
 **IT IS SETUP!**
@@ -181,9 +184,10 @@ until it ask to enter new password, use admin 123
 
 Now test password and see if you can login
 
-$mysql -u root -p
+$ mysql -u root -p
 
-$exit
+$ exit
+
 
 - Now clone the source code
 
