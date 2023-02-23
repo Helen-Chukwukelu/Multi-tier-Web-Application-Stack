@@ -13,19 +13,25 @@
 ### Project Explaination
 
 
-**In this project I setup a web application which is a social networking site written in Java. Stack is collection of services or technology to create an experience. I used Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service used. RabbitMQ is dummy in this project, not functional. It is a message broker or queueing agent.So when users try to login to access our application which is in apache tomcat, the application will run SQL query to access user information stored in Mysql server. But it will first go to Memcached service if the user has login in infomation before and it cached there.**
+In this project I setup a web application which is a social networking site written in Java. Stack is collection of services or technology to create an experience. I used Nginx as a web server and as a load balancer. Apache Tomcat is a java web application service used. RabbitMQ is dummy in this project, not functional. It is a message broker or queueing agent.So when users try to login to access our application which is in apache tomcat, the application will run SQL query to access user information stored in Mysql server. But it will first go to Memcached service if the user has login in infomation before and it cached there.
 
 - So i will guide you on how to setup multi-tier web application stack on our local machine. This will help you to be able to setup stack locally for your projects
 
 ### ARCHITECTURE
 
 - NGINX
+
 - TOMCAT
+
 - RABBITMQ
+
 - MEMCACHED
+
 - MYSQL server
 
-There is manual and automatic setup
+
+**There is manual and automatic setup**
+
 
 **Let's do manual first** This will actually help you learn how everything is being put together.
 
@@ -68,7 +74,7 @@ $ git clone https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack
 $ cd Multi-tier-Web-Application-Stack/
 
 
-- switch to local setup branch if that is not your current branch
+  - switch to local setup branch if that is not your current branch
 
 
 $ git checkout local-setup
@@ -124,13 +130,9 @@ Run
 
 $ vi /etc/profile
 
-- and then add the file just beneath the last code/line 
+  - Then add the file just beneath the last code/line 
 
-
-DATABASE_PASS='admin123' 
-
-
-- save and exit
+  - save and exit
 
 
 #### Install and setup a repository which is epel-release
@@ -145,7 +147,7 @@ this will set the repo access and then run
 
 $ yum install git mariadb-server -y
 
-- Starting & enabling mariadb-server
+**Starting & enabling mariadb-server**
 
 $ systemctl start mariadb
 
@@ -160,7 +162,7 @@ $ mysql_secure_installation
 
  Press enter
 
-until it ask to enter new password, use admin 123
+When asked to enter new password, enter your password
 
 
 ##### The below is to help you with the responses 
@@ -192,39 +194,40 @@ $ exit
 - Now clone the source code
 
 
-Download Source code & Initialize Database.
+##### Download Source code & Initialize Database.
 
 
- $git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git](https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
+ $ git clone -b local-setup https://github.com/devopshydclub/vprofile-project.git](https://github.com/Helen-Chukwukelu/Multi-tier-Web-Application-Stack.git
 
 **reason of cloning is because our database file is there**
 
-$cd Multi-tier-Web-Application-Stack.git
+$ cd Multi-tier-Web-Application-Stack.git
 
-$cd src/
+$ cd src/
 
-$cd main/
+$ cd main/
 
-$ls
+$ ls
 
-$cd resources/
+$ cd resources/
 
-$ls
+$ ls
 
-$pwd
+$ pwd
+
 
 - we will initialiswe our database with that
 
-$mysql -u root -p"$DATABASE_PASS" -e "create database accounts"
+$ mysql -u root -p"$DATABASE_PASS" -e "create database accounts"
 
-$mysql -u root -p"$DATABASE_PASS" -e "grant all privileges on accounts.* TO 'admin'@'app01' identified by 'admin123' "
+$ mysql -u root -p"$DATABASE_PASS" -e "grant all privileges on accounts.* TO 'admin'@'app01' identified by 'admin123' "
 
 
 - Now run db backup sql file
 
-$cd ../../..pwd
+$ cd ../../..pwd
 
-$pwd
+$ pwd
 
 Are you in vprofile-project? good!
 
